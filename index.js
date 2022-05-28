@@ -52,7 +52,7 @@ app.post('/posting', (req, res) => {
     client.login().then(() => {  //Es necesario ingresar a la cuenta de instagram primero
         console.log('Logged in!');
         const caption = "¡"+trainerName + " ha capturado un " + pokemonName + 
-        " salvaje! \n" + "Su peso es de: " + weight + "kg \n" + "Su altura es de: " + height + "m"
+        " salvaje! \n" + "Su peso es de: " + weight + "kg. \n" + "Su altura es de: " + height + "m." +
         "\n" + "#nodejs #reactjs #pokemon #pokemonwebapp";
 
         const instagramPostPictureFunction = async () => {
