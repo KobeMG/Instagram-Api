@@ -44,27 +44,28 @@ app.post('/posting', (req, res) => {
     console.log(trainerName, pokemonID);
     console.log("He recibido una petición de: " + trainerName + " con el pokemonID: " + pokemonID);
     console.log("----------------------");
-    res.send({ received: true, message: '¡Pokemon recibido! Podrás revisarlo en la cuenta @pokemonwebapp en Instagram.' });
-    getPokemonImage(pokemonID);
-    fetchPokemonStats(pokemonID);
+   // res.send({ received: true, message: '¡Pokemon recibido! Podrás revisarlo en la cuenta @pokemonwebapp en Instagram.' });
+    res.send({ received: true, message: 'Entrenador: '+ trainerName + ' Pokemon: ' + pokemonID });
+  //  getPokemonImage(pokemonID);
+  //  fetchPokemonStats(pokemonID);
 
-    //Subiendo pokemon a instagram
-    client.login().then(() => {  //Es necesario ingresar a la cuenta de instagram primero
-        console.log('Logged in!');
-        const caption = "¡"+trainerName + " ha capturado un " + pokemonName + 
-        " salvaje! \n" + "Su peso es de: " + weight + "kg. \n" + "Su altura es de: " + height + "m." +
-        "\n" + "#nodejs #reactjs #pokemon #pokemonwebapp";
+    // //Subiendo pokemon a instagram
+    // client.login().then(() => {  //Es necesario ingresar a la cuenta de instagram primero
+    //     console.log('Logged in!');
+    //     const caption = "¡"+trainerName + " ha capturado un " + pokemonName + 
+    //     " salvaje! \n" + "Su peso es de: " + weight + "kg. \n" + "Su altura es de: " + height + "m." +
+    //     "\n" + "#nodejs #reactjs #pokemon #pokemonwebapp";
 
-        const instagramPostPictureFunction = async () => {
-            const photo = 'image.jpg';
-            //const photo = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/001.png'
-            await client
-                .uploadPhoto({ photo: photo, caption: caption, post: 'feed' });
-            deleteFile('image.jpg');
-        };
-        instagramPostPictureFunction();
+    //     const instagramPostPictureFunction = async () => {
+    //         const photo = 'image.jpg';
+    //         //const photo = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/001.png'
+    //         await client
+    //             .uploadPhoto({ photo: photo, caption: caption, post: 'feed' });
+    //         deleteFile('image.jpg');
+    //     };
+    //     instagramPostPictureFunction();
 
-    });
+    // });
 });
 
 const fetchPokemonStats = async (pokemonID) => {
