@@ -47,7 +47,7 @@ console.log("POSTING...");
     console.log(trainerName, pokemonID);
     console.log("He recibido una petición de: " + trainerName + " con el pokemonID: " + pokemonID);
     console.log("----------------------");
-     res.send({ received: true, message: '¡Pokemon recibido! Podrás revisarlo en la cuenta @pokemonwebapp en Instagram.' });
+     res.send({ received: true, message: '¡Pokemon recibido! Podrás revisarlo en la cuenta @pokemonwebapp2.0 en Instagram.' });
     //res.send({ received: true, message: 'Entrenador: ' + trainerName + ' Pokemon: ' + pokemonID });
     getPokemonImage(pokemonID);
     fetchPokemonStats(pokemonID);
