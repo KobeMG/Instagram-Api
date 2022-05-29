@@ -39,9 +39,9 @@ app.get('/hello', (req, res) => {
     res.send('Hello World!');
 });
 app.post('/posting', (req, res) => {
-
-    //  const trainerName = req.body.trainerName;
-    // const pokemonID = req.body.pokemonID;
+console.log("POSTING...");
+    const trainerName = req.body.trainerName;
+    const pokemonID = req.body.pokemonID;
     //const trainerName = "Juan";
     //const pokemonID = "1";
     console.log(trainerName, pokemonID);
@@ -53,6 +53,7 @@ app.post('/posting', (req, res) => {
     fetchPokemonStats(pokemonID);
 
     //Subiendo pokemon a instagram
+    console.log("Iniciando Login...");
     client.login().then(() => {  //Es necesario ingresar a la cuenta de instagram primero
         console.log('Logged in!');
         const caption = "¡" + trainerName + " ha capturado un " + pokemonName +
