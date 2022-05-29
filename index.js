@@ -28,7 +28,8 @@ let height = 0;
 let pokemonName = "";
 
 app.use(cors({
-    origin: 'https://pokemonwild-app.netlify.app',
+    //  origin: 'https://pokemonwild-app.netlify.app',
+    origin: 'http://localhost:3000',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true
 }));
@@ -39,22 +40,24 @@ app.get('/hello', (req, res) => {
 });
 app.post('/posting', (req, res) => {
 
-    const trainerName = req.body.trainerName;
-    const pokemonID = req.body.pokemonID;
+    //  const trainerName = req.body.trainerName;
+    // const pokemonID = req.body.pokemonID;
+    //const trainerName = "Juan";
+    //const pokemonID = "1";
     console.log(trainerName, pokemonID);
     console.log("He recibido una petición de: " + trainerName + " con el pokemonID: " + pokemonID);
     console.log("----------------------");
-   // res.send({ received: true, message: '¡Pokemon recibido! Podrás revisarlo en la cuenta @pokemonwebapp en Instagram.' });
-    res.send({ received: true, message: 'Entrenador: '+ trainerName + ' Pokemon: ' + pokemonID });
-   getPokemonImage(pokemonID);
-  fetchPokemonStats(pokemonID);
+    // res.send({ received: true, message: '¡Pokemon recibido! Podrás revisarlo en la cuenta @pokemonwebapp en Instagram.' });
+    res.send({ received: true, message: 'Entrenador: ' + trainerName + ' Pokemon: ' + pokemonID });
+    getPokemonImage(pokemonID);
+    fetchPokemonStats(pokemonID);
 
     //Subiendo pokemon a instagram
     client.login().then(() => {  //Es necesario ingresar a la cuenta de instagram primero
         console.log('Logged in!');
-        const caption = "¡"+trainerName + " ha capturado un " + pokemonName + 
-        " salvaje! \n" + "Su peso es de: " + weight + "kg. \n" + "Su altura es de: " + height + "m." +
-        "\n" + "#nodejs #reactjs #pokemon #pokemonwebapp";
+        const caption = "¡" + trainerName + " ha capturado un " + pokemonName +
+            " salvaje! \n" + "Su peso es de: " + weight + "kg. \n" + "Su altura es de: " + height + "m." +
+            "\n" + "#nodejs #reactjs #pokemon #pokemonwebapp";
 
         const instagramPostPictureFunction = async () => {
             const photo = 'image.jpg';
@@ -70,13 +73,13 @@ app.post('/posting', (req, res) => {
 
 const fetchPokemonStats = async (pokemonID) => {
 
-    
+
     const res = await axios.get("https://pokeapi.co/api/v2/pokemon/" + pokemonID);
     const pokemon = await res.data;
 
     pokemonName = pokemon.name;
-    weight =  parseFloat(pokemon.weight)*0.1;
-    height =  parseFloat(pokemon.height)*0.1; 
+    weight = parseFloat(pokemon.weight) * 0.1;
+    height = parseFloat(pokemon.height) * 0.1;
     height = height.toFixed(1); //redondea a 1 decimal
     weight = weight.toFixed(1); //redondea a 1 decimal
     console.log("----------------------");
