@@ -28,8 +28,8 @@ let height = 0;
 let pokemonName = "";
 
 app.use(cors({
-    //  origin: 'https://pokemonwild-app.netlify.app',
-    origin: 'http://localhost:3000',
+      origin: 'https://pokemonwild-app.netlify.app',
+   // origin: 'http://localhost:3000',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true
 }));
