@@ -47,7 +47,7 @@ app.post('/posting', (req, res) => {
    // res.send({ received: true, message: '¡Pokemon recibido! Podrás revisarlo en la cuenta @pokemonwebapp en Instagram.' });
     res.send({ received: true, message: 'Entrenador: '+ trainerName + ' Pokemon: ' + pokemonID });
    getPokemonImage(pokemonID);
-   fetchPokemonStats(pokemonID);
+  // fetchPokemonStats(pokemonID);
 
     // //Subiendo pokemon a instagram
     // client.login().then(() => {  //Es necesario ingresar a la cuenta de instagram primero
