@@ -20,6 +20,7 @@ app.use(express.json());
 const port = process.env.PORT || 4000;
 app.listen(port, () => {
     console.log(`Listening on port ${port}`);
+    client
 });
 
 // Stats del pokemon
@@ -36,7 +37,7 @@ app.use(cors({
 
 // End points
 app.get('/hello', (req, res) => {
-    res.send('Hello World!'); z
+    res.send('Hello World!'); 
 });
 app.post('/posting', (req, res) => {
     console.log("POSTING...");
