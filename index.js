@@ -36,7 +36,7 @@ app.use(cors({
 
 // End points
 app.get('/hello', (req, res) => {
-    res.send('Hello World!');
+    res.send('Hello World!');z
 });
 app.post('/posting', (req, res) => {
 console.log("POSTING...");
