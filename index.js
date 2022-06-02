@@ -28,18 +28,18 @@ let height = 0;
 let pokemonName = "";
 
 app.use(cors({
-      origin: 'https://pokemonwild-app.netlify.app',
-   // origin: 'http://localhost:3000',
+    origin: 'https://pokemonwild-app.netlify.app',
+    // origin: 'http://localhost:3000',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true
 }));
 
 // End points
 app.get('/hello', (req, res) => {
-    res.send('Hello World!');z
+    res.send('Hello World!'); z
 });
 app.post('/posting', (req, res) => {
-console.log("POSTING...");
+    console.log("POSTING...");
     const trainerName = req.body.trainerName;
     const pokemonID = req.body.pokemonID;
     //const trainerName = "Juan";
@@ -47,29 +47,34 @@ console.log("POSTING...");
     console.log(trainerName, pokemonID);
     console.log("He recibido una petición de: " + trainerName + " con el pokemonID: " + pokemonID);
     console.log("----------------------");
-     res.send({ received: true, message: '¡Pokemon recibido! Podrás revisarlo en la cuenta @pokemonwebapp2.0 en Instagram.' });
+    res.send({ received: true, message: '¡Pokemon recibido! Podrás revisarlo en la cuenta @pokemonwebapp2.0 en Instagram.' });
     //res.send({ received: true, message: 'Entrenador: ' + trainerName + ' Pokemon: ' + pokemonID });
     getPokemonImage(pokemonID);
     fetchPokemonStats(pokemonID);
 
     //Subiendo pokemon a instagram
     console.log("Iniciando Login...");
-    client.login().then(() => {  //Es necesario ingresar a la cuenta de instagram primero
-        console.log('Logged in!');
-        const caption = "¡" + trainerName + " ha capturado un " + pokemonName +
-            " salvaje! \n" + "Su peso es de: " + weight + "kg. \n" + "Su altura es de: " + height + "m." +
-            "\n" + "#nodejs #reactjs #pokemon #pokemonwebapp";
+    try {
+        client.login().then(() => {  //Es necesario ingresar a la cuenta de instagram primero
+            console.log('Logged in!');
+            const caption = "¡" + trainerName + " ha capturado un " + pokemonName +
+                " salvaje! \n" + "Su peso es de: " + weight + "kg. \n" + "Su altura es de: " + height + "m." +
+                "\n" + "#nodejs #reactjs #pokemon #pokemonwebapp";
 
-        const instagramPostPictureFunction = async () => {
-            const photo = 'image.jpg';
-            //const photo = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/001.png'
-            await client
-                .uploadPhoto({ photo: photo, caption: caption, post: 'feed' });
-            deleteFile('image.jpg');
-        };
-        instagramPostPictureFunction();
+            const instagramPostPictureFunction = async () => {
+                const photo = 'image.jpg';
+                //const photo = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/001.png'
+                await client
+                    .uploadPhoto({ photo: photo, caption: caption, post: 'feed' });
+                deleteFile('image.jpg');
+            };
+            instagramPostPictureFunction();
 
-    });
+        });
+    } catch (error) {
+        console.log("Ha ocurrido un error: "+error);
+    }
+
 });
 
 const fetchPokemonStats = async (pokemonID) => {
