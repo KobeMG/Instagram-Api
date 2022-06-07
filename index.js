@@ -12,7 +12,8 @@ const password = process.env.INSTAGRAM_PASSWORD
 //Instagram
 const FileCookieStore = require('tough-cookie-filestore2');
 const cookieStore = new FileCookieStore('./cookies.json');
-const Instagram = require('instagram-web-api')
+// const Instagram = require('instagram-web-api');
+const Instagram = require('./insta_web');
 const client = new Instagram({ username, password, cookieStore });
 
 //Server
